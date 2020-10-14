@@ -17,6 +17,13 @@ volatile    while
 std::vector<std::string> reserveWord;
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    ifstream infile;
+    infile.open("test.c");
+    while(){
+        getLine();
+        analysisLine();
+    }
+
+
     return 0;
 }

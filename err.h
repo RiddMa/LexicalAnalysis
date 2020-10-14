@@ -1,9 +1,9 @@
 //
-// Created by 马嘉骥 on 2020/10/13.
+// Created by Ridd on 2020/10/14/014.
 //
 
-#ifndef LEX_MAIN_H
-#define LEX_MAIN_H
+#ifndef LEX_ERR_H
+#define LEX_ERR_H
 
 #include <iostream>
 #include <fstream>
@@ -11,4 +11,4 @@
 #include <string>
 
 using namespace std;
-#endif //LEX_MAIN_H
+#endif //LEX_ERR_H

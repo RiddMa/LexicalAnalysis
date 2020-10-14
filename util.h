@@ -4,9 +4,11 @@
 
 #ifndef LEX_UTIL_H
 #define LEX_UTIL_H
+
 #include <iostream>
 #include <string>
 #include <vector>
+#include <fstream>
 
 using namespace std;
 
