@@ -1,4 +1,7 @@
-#include "main.h"
+#include "../Headers/main.h"
+#include "../Headers/analysis.h"
+#include "../Headers/err.h"
+#include "../Headers/util.h"
 
 /*
 第一类：标识符   letter(letter | digit)*  无穷集
@@ -15,15 +18,22 @@ volatile    while
 第五类：运算符 <、<=、>、>=、=、+、-、*、/、^、
  */
 std::vector<std::string> reserveWord;
+std::vector<std::string> buf;
 
 int main() {
     ifstream infile;
     infile.open("test.c");
-    while(){
-        getLine();
-        analysisLine();
+
+    if (!infile) {
+        cout << "Unable to open file";
+        exit(1); // terminate with error
     }
 
+    writeLine(infile, buf);
+
+    for (auto & i : buf) {
+        analysisLine(i);
+    }
 
     return 0;
 }

@@ -12,6 +12,13 @@
 
 using namespace std;
 
+
+class tool{
+
+};
+
+int writeLine(std::ifstream &infile, std::vector<std::string> &buf);
+
 bool isReserveWord(const string &inString, const std::vector<std::string> &reserveWord);
 
 bool printTuple();

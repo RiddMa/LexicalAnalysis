@@ -11,4 +11,7 @@
 #include <string>
 
 using namespace std;
+
+int analysisLine(string inLine);
+
 #endif //LEX_ANALYSIS_H

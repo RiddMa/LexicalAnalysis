@@ -2,7 +2,7 @@
 // Created by 马嘉骥 on 2020/10/13.
 //
 
-#include "util.h"
+#include "../Headers/util.h"
 
 //extern std::vector<std::string> reserveWord;
 bool isReserveWord(const string &inString, const std::vector<std::string> &reserveWord) {
@@ -11,6 +11,12 @@ bool isReserveWord(const string &inString, const std::vector<std::string> &reser
             return true;
     }
     return false;
+}
+
+int writeLine(std::fstream &infile, std::vector<std::string> &buf) {
+    std::string tmpStr;
+    getline(infile, tmpStr);
+    buf.push_back(tmpStr);
 }
 
 bool printTuple() {

@@ -3,6 +3,6 @@ project(Lex)
 
 set(CMAKE_CXX_STANDARD 14)
 
-file(GLOB SOURCES "*.cpp")
+file(GLOB SOURCES "*.cpp" "*/*.cpp" "*.h" "*/*.h")
 
 add_executable(LEX ${SOURCES})
