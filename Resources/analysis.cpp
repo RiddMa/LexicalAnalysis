@@ -8,15 +8,15 @@ int analysisChar(char inChar) {
     switch (inChar) {
 
     }
+    return 0;
 }
 
 int analysisLine(string inLine) {
-    // remove all spaces in front
-    inLine.erase(0,inLine.find_first_not_of(" "));
 
     int len = inLine.length();
 
     for (int i = 0; i < len; i++) {
         analysisChar(inLine[i]);
     }
+    return 0;
 }

@@ -13,12 +13,17 @@ bool isReserveWord(const string &inString, const std::vector<std::string> &reser
     return false;
 }
 
-int writeLine(std::fstream &infile, std::vector<std::string> &buf) {
+
+int file2Buf(std::ifstream &infile, std::vector<std::string> &buf) {
     std::string tmpStr;
-    getline(infile, tmpStr);
-    buf.push_back(tmpStr);
+    while (std::getline(infile, tmpStr)) {
+        tmpStr.erase(0, tmpStr.find_first_not_of(" "));
+        buf.push_back(tmpStr);
+    }
+    return 0;
 }
 
-bool printTuple() {
 
+bool printTuple() {
+    return true;
 }

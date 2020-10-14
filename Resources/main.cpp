@@ -22,14 +22,14 @@ std::vector<std::string> buf;
 
 int main() {
     ifstream infile;
-    infile.open("test.c");
+    infile.open("../test.c");
 
     if (!infile) {
         cout << "Unable to open file";
         exit(1); // terminate with error
     }
 
-    writeLine(infile, buf);
+    file2Buf(infile, buf);
 
     for (auto & i : buf) {
         analysisLine(i);

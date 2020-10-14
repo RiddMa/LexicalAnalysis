@@ -13,11 +13,11 @@
 using namespace std;
 
 
-class tool{
+class tool {
 
 };
 
-int writeLine(std::ifstream &infile, std::vector<std::string> &buf);
+int file2Buf(std::ifstream &infile, std::vector<std::string> &buf);
 
 bool isReserveWord(const string &inString, const std::vector<std::string> &reserveWord);
 
