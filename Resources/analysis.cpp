@@ -3,19 +3,31 @@
 //
 
 #include "../Headers/analysis.h"
+#include "../Headers/util.h"
 
 int analysisChar(char inChar) {
-    switch (inChar) {
+    if(isLetter(inChar)){
 
     }
+    else if(isDigit(inChar)){
+
+    }
+
+    /*switch (inChar) {
+        case -1: {
+            std::cout << "Error encountered." << std::endl;
+
+        }
+    }*/
     return 0;
 }
 
-int analysisLine(string inLine) {
+int analysisLine(std::string inLine) {
 
-    int len = inLine.length();
+    std::string token;
 
-    for (int i = 0; i < len; i++) {
+    for (int i = 0; i < inLine.length(); i++) {
+        token.append(std::to_string(inLine[i]));
         analysisChar(inLine[i]);
     }
     return 0;

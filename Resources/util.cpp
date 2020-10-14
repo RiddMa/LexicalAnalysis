@@ -4,7 +4,15 @@
 
 #include "../Headers/util.h"
 
-//extern std::vector<std::string> reserveWord;
+bool isLetter(char inChar) {
+    return (isalpha(inChar) || inChar == '_');
+}
+
+bool isDigit(char inChar) {
+    return (isdigit(inChar) == true);
+}
+
+
 bool isReserveWord(const string &inString, const std::vector<std::string> &reserveWord) {
     for (const auto &i : reserveWord) {
         if (inString == i)
@@ -17,7 +25,7 @@ bool isReserveWord(const string &inString, const std::vector<std::string> &reser
 int file2Buf(std::ifstream &infile, std::vector<std::string> &buf) {
     std::string tmpStr;
     while (std::getline(infile, tmpStr)) {
-        tmpStr.erase(0, tmpStr.find_first_not_of(" "));
+        tmpStr.erase(0, tmpStr.find_first_not_of(' '));
         buf.push_back(tmpStr);
     }
     return 0;
