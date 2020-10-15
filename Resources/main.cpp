@@ -19,6 +19,7 @@ volatile    while
  */
 std::vector<std::string> reserveWord;
 std::vector<std::string> buf;
+int state;
 
 int main() {
     ifstream infile;
@@ -31,7 +32,7 @@ int main() {
 
     file2Buf(infile, buf);
 
-    for (auto & i : buf) {
+    for (auto &i : buf) {
         analysisLine(i);
     }
 

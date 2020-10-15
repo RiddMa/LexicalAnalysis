@@ -4,16 +4,17 @@
 
 #include "../Headers/util.h"
 
-bool isLetter(char inChar) {
+bool isLetter(const char inChar) {
     return (isalpha(inChar) || inChar == '_');
 }
 
-bool isDigit(char inChar) {
+bool isDigit(const char inChar) {
     return (isdigit(inChar) == true);
 }
 
 
-bool isReserveWord(const string &inString, const std::vector<std::string> &reserveWord) {
+bool isReserveWord(const string &inString) {
+
     for (const auto &i : reserveWord) {
         if (inString == i)
             return true;
@@ -32,6 +33,6 @@ int file2Buf(std::ifstream &infile, std::vector<std::string> &buf) {
 }
 
 
-bool printTuple() {
-    return true;
+void printTuple(std::string type, std::string attr) {
+    std::cout << "<" + type + "," + attr + ">" << std::endl;
 }

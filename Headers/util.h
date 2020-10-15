@@ -17,14 +17,14 @@ class tool {
 
 };
 
-bool isLetter(char inChar);
+bool isLetter(const char inChar);
 
-bool isDigit(char inChar);
+bool isDigit(const char inChar);
 
 int file2Buf(std::ifstream &infile, std::vector<std::string> &buf);
 
-bool isReserveWord(const string &inString, const std::vector<std::string> &reserveWord);
+bool isReserveWord(const string &inString);
 
-bool printTuple();
+void printTuple(std::string type, std::string attr);
 
 #endif //LEX_UTIL_H
