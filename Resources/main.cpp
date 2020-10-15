@@ -19,7 +19,8 @@ volatile    while
  */
 std::vector<std::string> reserveWord;
 std::vector<std::string> buf;
-int state;
+int state(0);
+int charRead(0);
 
 int main() {
     ifstream infile;

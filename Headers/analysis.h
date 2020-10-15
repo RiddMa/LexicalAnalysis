@@ -12,6 +12,6 @@
 
 using namespace std;
 
-int analysisLine(string inLine);
+int analysisLine(const string& inLine);
 
 #endif //LEX_ANALYSIS_H
