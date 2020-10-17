@@ -17,10 +17,9 @@ volatile    while
 第四类：界符  ‘/*’、‘//’、 () { } [ ] " "  '
 第五类：运算符 <、<=、>、>=、=、+、-、*、/、^、
  */
-std::vector<std::string> reserveWord;
 std::vector<std::string> buf;
 int state(0);
-int charRead(0);
+bool read(false);
 
 int main() {
     ifstream infile;
@@ -33,9 +32,25 @@ int main() {
 
     file2Buf(infile, buf);
 
-    for (auto &i : buf) {
-        analysisLine(i);
-    }
+    char inChar;
+    std::string token;
+    for (int i = 0;i<buf.size();i++) {
+        for (int j = 0; j < buf[i].length();) {
+            if (state == 14) {// remain of this line is comment
+                return 0;
+            } else {
+                if (!read) {
+                    inChar = buf[i][j];
+                    j++;
+                }
+                analysisChar(token, inChar);
+            }
 
+        }
+        //analysisLine(i);
+    }
+    analysisChar(token, inChar);
+
+    infile.close();
     return 0;
 }

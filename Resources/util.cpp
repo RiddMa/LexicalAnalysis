@@ -4,18 +4,27 @@
 
 #include "../Headers/util.h"
 
+std::string keyword[] = {
+        "auto", "break", "case", "char", "const", "continue",
+        "default", "do", "double", "else", "enum", "extern",
+        "float", "for", "goto", "if", "int", "long",
+        "register", "return", "short", "signed", "sizeof", "static",
+        "struct", "switch", "typedef", "union", "unsigned", "void",
+        "volatile", "while"
+};
+
 bool isLetter(const char inChar) {
     return (isalpha(inChar) || inChar == '_');
 }
 
 bool isDigit(const char inChar) {
-    return (isdigit(inChar) == true);
+    return (isdigit(inChar)  !=0);
 }
 
 
-bool isReserveWord(const string &inString) {
+bool isKeyword(const std::string &inString) {
 
-    for (const auto &i : reserveWord) {
+    for (const auto &i : keyword) {
         if (inString == i)
             return true;
     }
@@ -33,6 +42,6 @@ int file2Buf(std::ifstream &infile, std::vector<std::string> &buf) {
 }
 
 
-void printTuple(std::string type, std::string attr) {
+void printTuple(const std::string &type, const std::string &attr) {
     std::cout << "<" + type + "," + attr + ">" << std::endl;
 }

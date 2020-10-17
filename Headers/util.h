@@ -23,8 +23,8 @@ bool isDigit(const char inChar);
 
 int file2Buf(std::ifstream &infile, std::vector<std::string> &buf);
 
-bool isReserveWord(const string &inString);
+bool isKeyword(const std::string &inString);
 
-void printTuple(std::string type, std::string attr);
+void printTuple(const std::string& type, const std::string& attr);
 
 #endif //LEX_UTIL_H

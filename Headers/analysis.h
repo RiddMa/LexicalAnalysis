@@ -10,8 +10,12 @@
 #include <vector>
 #include <string>
 
+#include "util.h"
+
 using namespace std;
 
-int analysisLine(const string& inLine);
+int analysisLine(const string &inLine);
+
+int analysisChar(std::string &token, char &inChar);
 
 #endif //LEX_ANALYSIS_H
