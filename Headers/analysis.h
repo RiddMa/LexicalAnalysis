@@ -14,8 +14,6 @@
 
 using namespace std;
 
-int analysisLine(const string &inLine);
-
 int analysisChar(std::string &token, char &inChar);
 
 #endif //LEX_ANALYSIS_H

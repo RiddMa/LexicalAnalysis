@@ -20,6 +20,7 @@ int analysisChar(std::string &token, char &inChar) {
             read = false;
             token.clear();
             state = 0;
+            cnt.errCount++;
             break;
 
         case 0:
@@ -202,7 +203,7 @@ int analysisChar(std::string &token, char &inChar) {
             }
             break;
 
-            //states to check comments: 10-13
+        //states to check comments: 10-13
         case 10:// comment starts with '/'
             if (inChar == '/') {// comment like "//"
                 state = 11;
@@ -339,25 +340,5 @@ int analysisChar(std::string &token, char &inChar) {
             read = true;
             break;
     }
-
-    return 0;
-}
-
-int analysisLine(const std::string &inLine) {
-    char inChar;
-    std::string token;
-    for (int i = 0; i < inLine.length();) {
-        if (state == 14) {// remain of this line is comment
-            return 0;
-        } else {
-            if (!read) {
-                inChar = inLine[i];
-                i++;
-            }
-            analysisChar(token, inChar);
-        }
-
-    }
-    //analysisChar(token,inChar);
     return 0;
 }

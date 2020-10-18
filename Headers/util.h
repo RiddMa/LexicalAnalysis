@@ -23,7 +23,7 @@ public:
     int opCount;
     int constCount;
     int othersCount;
-
+    int errCount;
 
 public:
     void clear() {
@@ -37,7 +37,7 @@ public:
     }
 
     int getTotalCount() {
-        return idCount + keywordCount + opCount + constCount + othersCount;
+        return idCount + keywordCount + opCount + constCount + othersCount + errCount;
     }
 };
 

@@ -60,8 +60,9 @@ int main() {
 
     std::cout << "Char count: " << cnt.charCount << " \tRow count: " << cnt.rowCount << std::endl;
     std::cout << "Keyword count: " << cnt.keywordCount << "\tIdentifier count: " << cnt.idCount;
-    std::cout << "\tOperator count: " << cnt.opCount << "\tConstant count: " << cnt.constCount;
-    std::cout << "\tOthers count: " << cnt.othersCount << std::endl;
+    std::cout << "\tOperator count: " << cnt.opCount << "\tConstant count: " << cnt.constCount<< std::endl;
+    std::cout << "Delimiter count: " << cnt.othersCount << "\tError count: " << cnt.errCount ;
+    std::cout << "\t\tTotal count: " << cnt.getTotalCount() << std::endl;
     infile.close();
     return 0;
 }

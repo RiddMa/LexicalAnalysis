@@ -11,4 +11,5 @@
 #include <string>
 
 using namespace std;
+
 #endif //LEX_MAIN_H

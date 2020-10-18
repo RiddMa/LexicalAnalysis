@@ -21,7 +21,6 @@ bool isDigit(const char inChar) {
     return (isdigit(inChar) != 0);
 }
 
-
 bool isKeyword(const std::string &inString) {
 
     for (const auto &i : keyword) {
@@ -31,17 +30,14 @@ bool isKeyword(const std::string &inString) {
     return false;
 }
 
-
 int file2Buf(std::ifstream &infile, std::vector<std::string> &buf) {
     std::string tmpStr;
     while (std::getline(infile, tmpStr)) {
         tmpStr.erase(0, tmpStr.find_first_not_of(' '));
-        buf.push_back(tmpStr+'\n');
+        buf.push_back(tmpStr + '\n');
     }
-    //buf.emplace_back('\n');
     return 0;
 }
-
 
 void printTuple(const std::string &type, const std::string &attr) {
     std::cout << "<" + type + "," + attr + ">" << std::endl;
