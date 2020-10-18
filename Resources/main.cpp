@@ -1,20 +1,6 @@
 #include "../Headers/main.h"
 #include "../Headers/analysis.h"
 
-/*
-第一类：标识符   letter(letter | digit)*  无穷集
-第二类：常数    (digit)+  无穷集
-第三类：保留字(32)
-auto       break    case     char        const      continue
-default    do       double   else        enum       extern
-float      for      goto     if          int        long
-register   return   short    signed      sizeof     static
-struct     switch   typedef  union       unsigned   void
-volatile    while
-
-第四类：界符  ‘/*’、‘//’、 () { } [ ] " "  '
-第五类：运算符 <、<=、>、>=、=、+、-、*、/、^、
- */
 std::vector<std::string> buf;
 int state(0);
 bool read(false);
@@ -58,8 +44,8 @@ int main() {
 
     std::cout << "Char count: " << cnt.charCount << " \tRow count: " << cnt.rowCount << std::endl;
     std::cout << "Keyword count: " << cnt.keywordCount << "\tIdentifier count: " << cnt.idCount;
-    std::cout << "\tOperator count: " << cnt.opCount << "\tConstant count: " << cnt.constCount<< std::endl;
-    std::cout << "Delimiter count: " << cnt.othersCount << "\tError count: " << cnt.errCount ;
+    std::cout << "\tOperator count: " << cnt.opCount << "\tConstant count: " << cnt.constCount << std::endl;
+    std::cout << "Delimiter count: " << cnt.othersCount << "\tError count: " << cnt.errCount;
     std::cout << "\t\tTotal count: " << cnt.getTotalCount() << std::endl;
     infile.close();
     return 0;
