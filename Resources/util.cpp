@@ -18,7 +18,7 @@ bool isLetter(const char inChar) {
 }
 
 bool isDigit(const char inChar) {
-    return (isdigit(inChar)  !=0);
+    return (isdigit(inChar) != 0);
 }
 
 
@@ -36,8 +36,9 @@ int file2Buf(std::ifstream &infile, std::vector<std::string> &buf) {
     std::string tmpStr;
     while (std::getline(infile, tmpStr)) {
         tmpStr.erase(0, tmpStr.find_first_not_of(' '));
-        buf.push_back(tmpStr);
+        buf.push_back(tmpStr+'\n');
     }
+    //buf.emplace_back('\n');
     return 0;
 }
 

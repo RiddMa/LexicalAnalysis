@@ -20,6 +20,7 @@ volatile    while
 std::vector<std::string> buf;
 int state(0);
 bool read(false);
+tool cnt{};
 
 int main() {
     ifstream infile;
@@ -34,23 +35,33 @@ int main() {
 
     char inChar;
     std::string token;
-    for (int i = 0;i<buf.size();i++) {
+    cnt.clear();
+    for (int i = 0; i < buf.size(); i++) {
         for (int j = 0; j < buf[i].length();) {
             if (state == 14) {// remain of this line is comment
-                return 0;
+                state = 0;
+                break;
             } else {
                 if (!read) {
                     inChar = buf[i][j];
                     j++;
+                    cnt.charCount++;
                 }
                 analysisChar(token, inChar);
             }
 
         }
-        //analysisLine(i);
+        cnt.rowCount++;
     }
-    analysisChar(token, inChar);
+    if (state != 0) {
+        state = -1;
+        analysisChar(token, inChar);
+    }
 
+    std::cout << "Char count: " << cnt.charCount << " \tRow count: " << cnt.rowCount << std::endl;
+    std::cout << "Keyword count: " << cnt.keywordCount << "\tIdentifier count: " << cnt.idCount;
+    std::cout << "\tOperator count: " << cnt.opCount << "\tConstant count: " << cnt.constCount;
+    std::cout << "\tOthers count: " << cnt.othersCount << std::endl;
     infile.close();
     return 0;
 }

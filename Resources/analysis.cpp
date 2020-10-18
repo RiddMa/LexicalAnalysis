@@ -6,6 +6,7 @@
 
 extern int state;
 extern bool read;
+extern tool cnt;
 
 int analysisChar(std::string &token, char &inChar) {
     /*
@@ -15,7 +16,9 @@ int analysisChar(std::string &token, char &inChar) {
      */
     switch (state) {
         case -1:
-            std::cout << "Error encountered." << std::endl;
+            std::cout << "Error at row " << cnt.rowCount << ": \"" << token << inChar << "\"" << std::endl;
+            read = false;
+            token.clear();
             state = 0;
             break;
 
@@ -77,6 +80,7 @@ int analysisChar(std::string &token, char &inChar) {
                         token.push_back(inChar);
                         state = 0;
                         printTuple(token, "-");
+                        cnt.othersCount++;
                         break;
 
                     case '\'':// char ahead
@@ -93,10 +97,12 @@ int analysisChar(std::string &token, char &inChar) {
                     case '\n':
                     case '\r':
                     case '\t':
+                    case '\\':
                         break;
 
                     default:
                         state = -1;
+                        read = true;
                         break;
                 }
             }
@@ -110,8 +116,10 @@ int analysisChar(std::string &token, char &inChar) {
                 read = true;
                 if (isKeyword(token)) {
                     printTuple(token, "-");
+                    cnt.keywordCount++;
                 } else {
                     printTuple("identifier", token);
+                    cnt.idCount++;
                 }
             }
             break;
@@ -125,10 +133,14 @@ int analysisChar(std::string &token, char &inChar) {
             } else if (inChar == 'E' || inChar == 'e') {// number like 1ex or 1Ex
                 token.push_back(inChar);
                 state = 5;
-            } else {// not digit, '.', E/e, end this
+            } else if(!isLetter(inChar)){// not digit, '.', E/e, end this
                 state = 0;
                 read = true;
                 printTuple("constant", token);
+                cnt.constCount++;
+            } else{
+                state = -1;
+                read = true;
             }
             break;
 
@@ -138,6 +150,7 @@ int analysisChar(std::string &token, char &inChar) {
                 state = 4;
             } else {// not expected char, error
                 state = -1;
+                read = true;
             }
             break;
 
@@ -151,6 +164,7 @@ int analysisChar(std::string &token, char &inChar) {
                 state = 0;
                 read = true;
                 printTuple("constant", token);
+                cnt.constCount++;
             }
             break;
 
@@ -163,6 +177,7 @@ int analysisChar(std::string &token, char &inChar) {
                 state = 7;
             } else {// syntax error
                 state = -1;
+                read = true;
             }
             break;
 
@@ -172,6 +187,7 @@ int analysisChar(std::string &token, char &inChar) {
                 state = 7;
             } else {
                 state = -1;
+                read = true;
             }
             break;
 
@@ -182,6 +198,7 @@ int analysisChar(std::string &token, char &inChar) {
                 state = 0;
                 read = true;
                 printTuple("constant", token);
+                cnt.constCount++;
             }
             break;
 
@@ -217,6 +234,7 @@ int analysisChar(std::string &token, char &inChar) {
                 state = 0;
             } else if (inChar == EOF) {// file finished without comment end mark
                 state = -1;
+                read = true;
             } else {// still in comment
                 state = 12;
             }
@@ -234,6 +252,7 @@ int analysisChar(std::string &token, char &inChar) {
                 read = true;
             }
             printTuple("operator", token);
+            cnt.opCount++;
             break;
 
         case 21:// * or *=, ! or !=
@@ -245,6 +264,7 @@ int analysisChar(std::string &token, char &inChar) {
                 read = true;
             }
             printTuple("operator", token);
+            cnt.opCount++;
             break;
 
         case 22:// bool logic &, &&, |, || ; plus = or ==
@@ -256,6 +276,7 @@ int analysisChar(std::string &token, char &inChar) {
                 read = true;
             }
             printTuple("operator", token);
+            cnt.opCount++;
             break;
 
         case 23:// x or x= or xx or xx=
@@ -263,6 +284,7 @@ int analysisChar(std::string &token, char &inChar) {
                 token.push_back(inChar);
                 state = 0;
                 printTuple("operator", token);
+                cnt.opCount++;
             } else if (inChar == token.back()) {// maybe xx or xx=, goto case 21
                 token.push_back(inChar);
                 state = 21;
@@ -270,20 +292,25 @@ int analysisChar(std::string &token, char &inChar) {
                 state = 0;
                 read = true;
                 printTuple("operator", token);
+                cnt.opCount++;
             }
             break;
 
         case 30:// skip char
+
             if (inChar == '\'') {
                 if (token.length() == 2) {// char read
                     token.push_back(inChar);
                     state = 0;
                     printTuple("constant", token);
+                    cnt.constCount++;
                 } else {// char doesnt have 1 character
                     state = -1;
+                    read = true;
                 }
-            } else if (inChar == EOF) {// file finished without char end mark
+            } else if (token.size() >= 2) {
                 state = -1;
+                read = true;
             } else {
                 token.push_back(inChar);
             }
@@ -297,9 +324,11 @@ int analysisChar(std::string &token, char &inChar) {
                     token.push_back(inChar);
                     state = 0;
                     printTuple("constant", token);
+                    cnt.constCount++;
                 }
             } else if (inChar == EOF) {// file finished without char end mark
                 state = -1;
+                read = true;
             } else {// just string
                 token.push_back(inChar);
             }
@@ -307,9 +336,9 @@ int analysisChar(std::string &token, char &inChar) {
 
         default:
             state = -1;
+            read = true;
             break;
     }
-
 
     return 0;
 }
@@ -329,6 +358,6 @@ int analysisLine(const std::string &inLine) {
         }
 
     }
-        //analysisChar(token,inChar);
+    //analysisChar(token,inChar);
     return 0;
 }
