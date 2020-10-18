@@ -1,7 +1,5 @@
 #include "../Headers/main.h"
 #include "../Headers/analysis.h"
-#include "../Headers/err.h"
-#include "../Headers/util.h"
 
 /*
 第一类：标识符   letter(letter | digit)*  无穷集
