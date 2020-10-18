@@ -60,7 +60,7 @@ int analysisChar(std::string &token, char &inChar) {
                         break;
 
                     case '<':// x or xx or x= or xx=
-                    case '>':// why the fxxk there is <<= and >>=???
+                    case '>':
                         token.push_back(inChar);
                         state = 23;
                         break;
